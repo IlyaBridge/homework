@@ -31,6 +31,8 @@ https://github.com/netology-code/sflt-homeworks/blob/main/1/hsrp_advanced.pkt
 •	На проверку отправьте получившуюся схему в формате pkt и скриншот, где виден процесс настройки маршрутизатора.
 
 ### Решение 1
+Схема в формате pkt:
+https://github.com/IlyaBridge/homework/blob/main/fault-tolerance-1/hsrp_advanced_new.pkt
 
 ![001-1 - router1](https://github.com/user-attachments/assets/1ac30fd7-60cc-451c-ab72-3037abe01797)
 
