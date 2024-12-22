@@ -23,12 +23,12 @@
 ---
 
 ### Задание 1
-•	Дана схема для Cisco Packet Tracer, рассматриваемая в лекции.
-•	На данной схеме уже настроено отслеживание интерфейсов маршрутизаторов Gi0/1 (для нулевой группы) 
+Дана схема для Cisco Packet Tracer, рассматриваемая в лекции.
+На данной схеме уже настроено отслеживание интерфейсов маршрутизаторов Gi0/1 (для нулевой группы) 
 https://github.com/netology-code/sflt-homeworks/blob/main/1/hsrp_advanced.pkt
-•	Необходимо аналогично настроить отслеживание состояния интерфейсов Gi0/0 (для первой группы).
-•	Для проверки корректности настройки, разорвите один из кабелей между одним из маршрутизаторов и Switch0 и запустите ping между PC0 и Server0.
-•	На проверку отправьте получившуюся схему в формате pkt и скриншот, где виден процесс настройки маршрутизатора.
+Необходимо аналогично настроить отслеживание состояния интерфейсов Gi0/0 (для первой группы).
+Для проверки корректности настройки, разорвите один из кабелей между одним из маршрутизаторов и Switch0 и запустите ping между PC0 и Server0.
+На проверку отправьте получившуюся схему в формате pkt и скриншот, где виден процесс настройки маршрутизатора.
 
 ### Решение 1
 Схема в формате pkt:
@@ -54,6 +54,7 @@ https://github.com/netology-code/sflt-homeworks/blob/main/1/keepalived-simple.co
 
 1. `Конфигурация Keepalived на сервере 1 (MASTER)`
    /etc/keepalived/keepalived.conf
+   https://github.com/IlyaBridge/homework/blob/main/fault-tolerance-1/keepalived.MASTER.conf
 ```
 vrrp_script check_nginx {
     script "/usr/local/bin/check_nginx.sh"
@@ -81,6 +82,7 @@ vrrp_instance VI_1 {
 
 2. `Конфигурация Keepalived на сервере 2 (BACKUP)`
    /etc/keepalived/keepalived.conf
+   https://github.com/IlyaBridge/homework/blob/main/fault-tolerance-1/keepalived.BACKUP.conf
 ```
 vrrp_script check_nginx {
     script "/usr/local/bin/check_nginx.sh"
@@ -108,6 +110,7 @@ vrrp_instance VI_1 {
 
 4. `Bash-скрипт, создаётся на сервере №1 и сервере №2`
    /usr/local/bin/check_nginx.sh
+   https://github.com/IlyaBridge/homework/blob/main/fault-tolerance-1/check_nginx.sh
 ```
 #!/bin/bash
 
@@ -127,7 +130,6 @@ if [ ! -f "$INDEX_FILE" ]; then
 fi
 
 exit 0
-
 ```
 Результат:
 ![image](https://github.com/user-attachments/assets/487da52f-2ef6-4b13-adb2-b7fcdc0fd8f6)
