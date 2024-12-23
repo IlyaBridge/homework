@@ -71,6 +71,7 @@ sudo apt install haproxy`
 
 Настроим файла конфигурации HAProxy  
 файл haproxy.cfg
+https://github.com/IlyaBridge/homework/blob/main/fault-tolerance-2/haproxy_task_1.cfg
 ```
 global
         log /dev/log        local0
@@ -177,6 +178,7 @@ listen web_tcp
 `python3 -m http.server 7777`
 
 Отредактуем файл конфигурации HAProxy haproxy.cfg
+https://github.com/IlyaBridge/homework/blob/main/fault-tolerance-2/haproxy_task_2.cfg
 ```
 global
     log /dev/log    local0
