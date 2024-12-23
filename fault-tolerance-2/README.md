@@ -138,17 +138,19 @@ listen web_tcp
         server s2 127.0.0.1:9999 check inter 3s
 ```
 
-Результат:
-Сделаем проверку, когда работают сервер №1 и сервер №2
+Результат. Сделаем проверку, когда работают сервер №1 и сервер №2
+
 ![image](https://github.com/user-attachments/assets/95ff9f32-94e6-440d-b091-03a5cc7fbb61)
 
 Отключим сервер №1
 ![image](https://github.com/user-attachments/assets/db3d04a5-23d3-48bc-b635-bc5a7d7f4d85)
 
 Проверим без сервера №1
+
 ![image](https://github.com/user-attachments/assets/e8f17901-ee14-43fa-992a-ca789b308d5e)
 
 В целом проверка балансировки на 4 уровне: сервер №1 и сервер №2
+
 ![image](https://github.com/user-attachments/assets/b5eb0fed-7802-4d1a-a1f4-e7657ea72f6a)
 
 ![image](https://github.com/user-attachments/assets/920e1b05-f7a9-4fe9-9efe-fae9924f4d81)
@@ -247,6 +249,7 @@ HAProxy будет балансировать запросы между серв
 ![image](https://github.com/user-attachments/assets/539bad98-5228-4497-9eb1-0ea9176159b7)
 
 Скриншоты работы серверов:
+
 ![image](https://github.com/user-attachments/assets/c4b221f4-37b9-4d5d-8968-2b50889c101c)
 
 ![image](https://github.com/user-attachments/assets/2a95a29c-bfa8-4459-bad6-db3d765b02dd)
@@ -254,6 +257,7 @@ HAProxy будет балансировать запросы между серв
 ![image](https://github.com/user-attachments/assets/70055c53-475c-4f35-a8ba-a091eed882c6)
 
 Скриншот веб-страницы статистики HAProxy (http://127.0.0.1:888/stats):
+
 ![image](https://github.com/user-attachments/assets/dcbf2251-03b1-4f15-9dfc-db0c42e915ed)
 
 
