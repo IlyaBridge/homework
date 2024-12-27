@@ -32,33 +32,35 @@
    4. На проверку направить скриншот с командой и результатом ее выполнения
 
 ### Решение 1
-1. `Пояснения к выполнению домашнего задания: есть два сервера развёрнутых на VirtualBox. В качестве ОС используется Ubuntu Server. IP адрес Сервера №1 10.0.2.16, IP Сервера №2 10.0.2.17.
+1. Пояснения к выполнению домашнего задания: есть два сервера развёрнутых на VirtualBox. В качестве ОС используется Ubuntu Server. IP адрес Сервера №1 10.0.2.16, IP Сервера №2 10.0.2.17.
 Пользователь первого сервера ilya1. Пользователь второго сервера ilya2.
-Сервер №1 подключается по SSH ключу к Серверу №2.`
+Сервер №1 подключается по SSH ключу к Серверу №2.
 
-2. `Команда исключает все скрытые директории, подсчитывает хэш-суммы для всех файлов:
-Выполним команду на Сервере №1:`
+2. Команда исключает все скрытые директории, подсчитывает хэш-суммы для всех файлов:
+Выполним команду на Сервере №1:
 ```
 rsync -avz --checksum --exclude='.*' /home/ilya1/ ilya2@10.0.2.17:/tmp/backup/
 ```
-3. `Создадим несколько файлов, включая скрытые в домашней папке на Сервере №1`
+3. Создадим несколько файлов, включая скрытые в домашней папке на Сервере №1
 
-`![image](https://github.com/user-attachments/assets/045140ed-a010-4d71-a9a2-bcb35b7908b6)`
+![image](https://github.com/user-attachments/assets/045140ed-a010-4d71-a9a2-bcb35b7908b6)
 
-4. `Сравним директории на сервере №1 и №2`
-`![image](https://github.com/user-attachments/assets/768a34be-e515-4ecb-946e-386997977c93)`
+4. Сравним директории на сервере №1 и №2
 
-5.`Выполним команду rsync
-$ rsync -avz --checksum --exclude='.*' /home/ilya1/ ilya2@10.0.2.17:/tmp/backup/`
+![image](https://github.com/user-attachments/assets/768a34be-e515-4ecb-946e-386997977c93)
 
-`![image](https://github.com/user-attachments/assets/5cab9dc3-d0f0-4be8-a530-d581014ffa24)`
+5.Выполним команду rsync
+$ rsync -avz --checksum --exclude='.*' /home/ilya1/ ilya2@10.0.2.17:/tmp/backup/
 
-`На Сервере №2 появиться директория backup с файлам которые по условию команды rsync, были скопированы из домашней директории Сервера №1 все кроме скрытых на Сервер №2 в директорию /tmp/backup.`
+![image](https://github.com/user-attachments/assets/5cab9dc3-d0f0-4be8-a530-d581014ffa24)
 
-8. `Результат выполнения команды rsync`
-`![image](https://github.com/user-attachments/assets/57e94b92-0796-47f4-afbb-8dbb6425be7e)`
+На Сервере №2 появиться директория backup с файлам которые по условию команды rsync, были скопированы из домашней директории Сервера №1 все кроме скрытых на Сервер №2 в директорию /tmp/backup.
 
-9. Процесс выполнения:-	rsync подключится к Серверу №2 по SSH.
+6. Результат выполнения команды rsync
+
+![image](https://github.com/user-attachments/assets/57e94b92-0796-47f4-afbb-8dbb6425be7e)
+
+7. Процесс выполнения:-	rsync подключится к Серверу №2 по SSH.
 -	Начнется синхронизация файлов из домашней директории пользователя ilya2 в /tmp/backup.
 -	Скрытые файлы и директории (начинающиеся с точки) будут исключены из копирования.
 -	Для проверки изменений будет подсчитан хэш-сумма всех файлов на обоих серверах.
@@ -73,7 +75,7 @@ $ rsync -avz --checksum --exclude='.*' /home/ilya1/ ilya2@10.0.2.17:/tmp/backup/
 5. На проверку направить файл crontab и скриншот с результатом работы утилиты.
 
 ### Решение 2
-1. `Создадим файл backup.sh со скриптом`
+1. Создадим файл backup.sh со скриптом
 ```
 #!/bin/bash
 
@@ -92,39 +94,40 @@ if [ $? -eq 0 ]; then
 else
   logger -t "backup" "ERROR: Backup of /home/ilya1/ to $backup_dir failed"
 fi
-
 ```
-2. `Дадим ему права на исполнение`
-`![image](https://github.com/user-attachments/assets/f11f22d1-2ffa-40ed-a4ad-9fb814e21656)`
+2. Дадим ему права на исполнение
 
-3. `Настройка задачи cron`
-`3.1 Откройтем редактор crontab для текущего пользователя:`
-      `crontab -e`
-`![image](https://github.com/user-attachments/assets/c5dd6f20-5a4e-4114-ad4f-04a2f34601ba)`
+![image](https://github.com/user-attachments/assets/f11f22d1-2ffa-40ed-a4ad-9fb814e21656)
 
-`3.2 Проверим как работает cron с нашим скриптом, настроем его на создание backup-а каждую минуту:`
+3. Настройка задачи cron
+   3.1 Откройтем редактор crontab для текущего пользователя:
+      crontab -e
+   
+![image](https://github.com/user-attachments/assets/c5dd6f20-5a4e-4114-ad4f-04a2f34601ba)
 
-`![image](https://github.com/user-attachments/assets/dedcaf2b-3543-4cd5-ba47-b99e85950726)`
+   3.2 Проверим как работает cron с нашим скриптом, настроем его на создание backup-а каждую минуту:
 
-`3.3 Вот результат поминутного backup-а`
+![image](https://github.com/user-attachments/assets/dedcaf2b-3543-4cd5-ba47-b99e85950726)
 
-`![image](https://github.com/user-attachments/assets/a11517aa-cb2a-4ac6-89a9-ac55c98b33c0)`
+   3.3 Вот результат поминутного backup-а
 
-`3.4 Теперь настроем работу cron в соответствии с условием домашнего задания. Скрипт backup.sh будет запускаться ежедневно в 02:00 ночи:
-0 2 * * * /home/ilya1/backup.sh
-/home/ilya1/backup.sh - полный путь к нашему скрипту.`
+![image](https://github.com/user-attachments/assets/a11517aa-cb2a-4ac6-89a9-ac55c98b33c0)
 
-`![image](https://github.com/user-attachments/assets/79998ca5-c83e-486b-bbd9-7c1d9f264428)`
+   3.4 Теперь настроем работу cron в соответствии с условием домашнего задания. Скрипт backup.sh будет запускаться ежедневно в 02:00 ночи:
+      0 2 * * * /home/ilya1/backup.sh
+/home/ilya1/backup.sh - полный путь к нашему скрипту.
 
-4. `Результат выполнения скрипта и cron`
-`4.1 В системном логе (/var/log/syslog) мы увидем:`
+![image](https://github.com/user-attachments/assets/79998ca5-c83e-486b-bbd9-7c1d9f264428)
 
-`![image](https://github.com/user-attachments/assets/04a80414-a69b-4553-8701-84ed078e70ee)`
+4. Результат выполнения скрипта и cron
+   4.1 В системном логе (/var/log/syslog) мы увидем:
 
-`4.2 Директория /tmp/backup будет содержать зеркальную копию домашней директории пользователя ilya1. (поминутный backup, для проверки работоспособности скрипта и cron)`
+![image](https://github.com/user-attachments/assets/04a80414-a69b-4553-8701-84ed078e70ee)
 
-`![image](https://github.com/user-attachments/assets/ef3addef-d0e0-40e2-a7aa-19a3eeac41b5)`
+   4.2 Директория /tmp/backup будет содержать зеркальную копию домашней директории пользователя ilya1. (поминутный backup, для проверки работоспособности скрипта и cron)
 
-`4.3 Итог выполнения скрипта backup.sh`
+![image](https://github.com/user-attachments/assets/ef3addef-d0e0-40e2-a7aa-19a3eeac41b5)
 
-`![image](https://github.com/user-attachments/assets/314adc36-7d12-41fa-a984-5bdfe9ec1600)`
+   4.3 Итог выполнения скрипта backup.sh
+
+![image](https://github.com/user-attachments/assets/314adc36-7d12-41fa-a984-5bdfe9ec1600)
