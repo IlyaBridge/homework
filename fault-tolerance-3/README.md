@@ -100,8 +100,8 @@ fi
 ![image](https://github.com/user-attachments/assets/f11f22d1-2ffa-40ed-a4ad-9fb814e21656)
 
 3. Настройка задачи cron
-   3.1 Откройтем редактор crontab для текущего пользователя:
-      crontab -e
+   
+   3.1 Откройтем редактор crontab для текущего пользователя: crontab -e
    
 ![image](https://github.com/user-attachments/assets/c5dd6f20-5a4e-4114-ad4f-04a2f34601ba)
 
@@ -114,12 +114,15 @@ fi
 ![image](https://github.com/user-attachments/assets/a11517aa-cb2a-4ac6-89a9-ac55c98b33c0)
 
    3.4 Теперь настроем работу cron в соответствии с условием домашнего задания. Скрипт backup.sh будет запускаться ежедневно в 02:00 ночи:
-      0 2 * * * /home/ilya1/backup.sh
-/home/ilya1/backup.sh - полный путь к нашему скрипту.
+   
+            0 2 * * * /home/ilya1/backup.sh
+      
+   /home/ilya1/backup.sh - полный путь к нашему скрипту.
 
 ![image](https://github.com/user-attachments/assets/79998ca5-c83e-486b-bbd9-7c1d9f264428)
 
 4. Результат выполнения скрипта и cron
+   
    4.1 В системном логе (/var/log/syslog) мы увидем:
 
 ![image](https://github.com/user-attachments/assets/04a80414-a69b-4553-8701-84ed078e70ee)
