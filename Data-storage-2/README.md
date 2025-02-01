@@ -37,7 +37,7 @@
 Если мы используем контейнер на основе образа memcached, то systemctl внутри контейнера может не работать, так как контейнеры обычно не используют systemd.
 Скриншот, который подтверждает, что memcached запущен.
 
-`![image](https://github.com/user-attachments/assets/0d6b1e66-ba29-49b7-aeb5-f5c6697106ac)`
+![image](https://github.com/user-attachments/assets/0d6b1e66-ba29-49b7-aeb5-f5c6697106ac)
 
 ---
 
@@ -48,7 +48,7 @@
 ### Решение 3. Удаление по TTL в Memcached
 Для демонстрации использовал 50 сек.
 
-`![image](https://github.com/user-attachments/assets/08fc479f-2f5a-43a8-8e92-813b32db60df)`
+![image](https://github.com/user-attachments/assets/08fc479f-2f5a-43a8-8e92-813b32db60df)
 
 ---
 
@@ -58,6 +58,6 @@
 
 ### Решение 4. Запись данных в Redis
 
-`![image](https://github.com/user-attachments/assets/60db111d-ae76-4c9b-945f-bd2a29ae3d81)`
+![image](https://github.com/user-attachments/assets/60db111d-ae76-4c9b-945f-bd2a29ae3d81)
 
 ---
