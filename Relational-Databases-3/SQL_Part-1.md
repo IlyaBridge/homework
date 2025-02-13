@@ -1,4 +1,4 @@
-# Домашнее задание к занятию "`SQL. Часть 1)`" - `Казначеев Илья`
+# Домашнее задание к занятию "`SQL. Часть 1`" - `Казначеев Илья`
 
 ---
 
@@ -12,6 +12,7 @@ FROM address
 WHERE district LIKE 'K%a' AND district NOT LIKE '% %';
 ```
 
+![ДЗ Задание 1](https://github.com/user-attachments/assets/6dca7be0-18cb-4288-aeb0-9a3d24e769f0)
 
 ---
 
@@ -26,7 +27,7 @@ WHERE payment_date BETWEEN '2005-06-15' AND '2005-06-18'
   AND amount > 10.00;
 ```
 
-
+![ДЗ Задание 2](https://github.com/user-attachments/assets/30d7242f-8db3-44e1-a206-2dfd8893c337)
 
 ---
 
@@ -41,6 +42,7 @@ ORDER BY rental_date DESC
 LIMIT 5;
 ```
 
+![ДЗ Задание 3](https://github.com/user-attachments/assets/e3d9097c-1a23-4dec-af92-5cb39e6131bb)
 
 ---
 
@@ -60,6 +62,7 @@ FROM customer
 WHERE active = 1 AND (first_name = 'Kelly' OR first_name = 'Willie');
 ```
 
+![ДЗ Задание 4](https://github.com/user-attachments/assets/827dc005-88ca-458c-8f81-16b006fb4392)
 
 ---
 
@@ -77,6 +80,7 @@ SELECT
 FROM customer;
 ```
 
+![ДЗ Задание 5](https://github.com/user-attachments/assets/321430b6-4e21-450f-b0c9-7c5fa06dd127)
 
 ---
 
@@ -96,6 +100,10 @@ SELECT
     ) AS email_domain
 FROM customer;
 ```
+
+![ДЗ Задание 6](https://github.com/user-attachments/assets/05e1f1af-6747-45c5-b610-d809d42812fd)
+
+---
 
 
 ---
