@@ -12,9 +12,28 @@
 
 ### Решение 1
 ```
-КОД
+SELECT 
+    s.first_name AS staff_first_name,
+    s.last_name AS staff_last_name,
+    c.city AS store_city,
+    COUNT(cu.customer_id) AS customer_count
+FROM 
+    store st
+JOIN 
+    staff s ON st.manager_staff_id = s.staff_id
+JOIN 
+    address a ON st.address_id = a.address_id
+JOIN 
+    city c ON a.city_id = c.city_id
+JOIN 
+    customer cu ON st.store_id = cu.store_id
+GROUP BY 
+    st.store_id
+HAVING 
+    COUNT(cu.customer_id) > 300;
 ```
 
+![Задание 1 (Ч-2)](https://github.com/user-attachments/assets/e618ea40-98fe-44a0-bf75-abb0d4174102)
 
 ---
 
@@ -23,10 +42,15 @@
 
 ### Решение 2
 ```
-КОД
+SELECT 
+    COUNT(*) AS films_count
+FROM 
+    film
+WHERE 
+    length > (SELECT AVG(length) FROM film);
 ```
 
-
+![Задание 2 (Ч-2)](https://github.com/user-attachments/assets/b1063210-1041-434d-ac48-dfa3a1edeca1)
 
 ---
 
@@ -35,8 +59,20 @@
 
 ### Решение 3
 ```
-КОД
+SELECT 
+    DATE_FORMAT(payment_date, '%Y-%m') AS payment_month,
+    SUM(amount) AS total_amount,
+    COUNT(DISTINCT rental_id) AS rental_count
+FROM 
+    payment
+GROUP BY 
+    payment_month
+ORDER BY 
+    total_amount DESC
+LIMIT 1;
 ```
+
+![Задание 3 (Ч-2)](https://github.com/user-attachments/assets/97625d78-b708-4bb8-ae96-b7dd7d0183a9)
 
 ---
 
@@ -48,9 +84,20 @@
 
 ### Решение 4*
 ```
-КОД
+SELECT 
+    staff_id,
+    COUNT(payment_id) AS sales_count,
+    CASE 
+        WHEN COUNT(payment_id) > 8000 THEN 'Да'
+        ELSE 'Нет'
+    END AS Премия
+FROM 
+    payment
+GROUP BY 
+    staff_id;
 ```
 
+![Задание 4 (Ч-2)](https://github.com/user-attachments/assets/6bf02b56-40bb-466a-ac97-089a44c5b844)
 
 ---
 
@@ -59,8 +106,19 @@
 
 ### Решение 5*
 ```
-КОД
+SELECT 
+    f.film_id,
+    f.title
+FROM 
+    film f
+LEFT JOIN 
+    inventory i ON f.film_id = i.film_id
+LEFT JOIN 
+    rental r ON i.inventory_id = r.inventory_id
+WHERE 
+    r.rental_id IS NULL;
 ```
 
+![Задание 5 (Ч-2)](https://github.com/user-attachments/assets/60aacc30-6af3-4104-89fc-7dd0634a89ab)
 
 ---
