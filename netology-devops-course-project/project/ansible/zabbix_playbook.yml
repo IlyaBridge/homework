@@ -1,0 +1,203 @@
+# /home/ilya/project/ansible/zabbix_playbook.yml
+
+---
+- name: Install and configure Zabbix Server 6.0 LTS with PostgreSQL and Nginx
+  hosts: zabbix
+  become: yes
+  vars:
+    zabbix_version: "6.0"
+    ubuntu_version: "24.04"
+    db_name: "zabbix"
+    db_user: "zabbix"
+    db_password: "00000"
+    zabbix_server_conf: "/etc/zabbix/zabbix_server.conf"
+    php_post_max_size: "16M"
+    php_max_execution_time: "300"
+    php_max_input_time: "300"
+    php_memory_limit: "256M"
+    php_upload_max_filesize: "16M"
+
+  tasks:
+    - name: Disable UFW completely
+      ufw:
+        state: disabled
+ 
+    # 1. Установка зависимостей
+    - name: Install required packages
+      apt:
+        name:
+          - wget
+          - gnupg2
+          - software-properties-common
+          - ca-certificates
+          - curl
+          - apt-transport-https
+        state: present
+        update_cache: yes
+
+    # 2. Установка PostgreSQL
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+
+    # 3. Запуск и включение PostgreSQL
+    - name: Ensure PostgreSQL is running and enabled
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    # 4. Добавление репозитория Zabbix
+    - name: Download Zabbix repository package
+      get_url:
+        url: "https://repo.zabbix.com/zabbix/{{ zabbix_version }}/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_{{ zabbix_version }}+ubuntu{{ ubuntu_version }}_all.deb"
+        dest: "/tmp/zabbix-release_latest_{{ zabbix_version }}+ubuntu{{ ubuntu_version }}_all.deb"
+
+    - name: Install Zabbix repository
+      apt:
+        deb: "/tmp/zabbix-release_latest_{{ zabbix_version }}+ubuntu{{ ubuntu_version }}_all.deb"
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    # 5. Установка компонентов Zabbix и PHP-FPM
+    - name: Install Zabbix components
+      apt:
+        name:
+          - zabbix-server-pgsql
+          - zabbix-frontend-php
+          - php8.3-fpm
+          - php8.3-pgsql
+          - zabbix-sql-scripts
+          - zabbix-agent
+          - nginx
+        state: present
+        install_recommends: no  # Не устанавливать рекомендуемые пакеты
+
+    # 6. Настройка базы данных PostgreSQL
+    - name: Create PostgreSQL user
+      command: >
+        sudo -u postgres psql -c "CREATE USER {{ db_user }} WITH PASSWORD '{{ db_password }}' CREATEDB CREATEROLE"
+      register: pg_user
+      changed_when: "'already exists' not in pg_user.stderr"
+      failed_when: "pg_user.rc != 0 and 'already exists' not in pg_user.stderr"
+
+    - name: Create Zabbix database
+      command: >
+        sudo -u postgres psql -c "CREATE DATABASE {{ db_name }} OWNER {{ db_user }}"
+      register: pg_db
+      changed_when: "'already exists' not in pg_db.stderr"
+      failed_when: "pg_db.rc != 0 and 'already exists' not in pg_db.stderr"
+
+    - name: Import initial schema and data
+      shell: |
+        zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+      args:
+        executable: /bin/bash
+      environment:
+        PGPASSWORD: "{{ db_password }}"
+      when: pg_user.changed or pg_db.changed
+
+    # 7. Настройка Zabbix сервера
+    - name: Configure Zabbix server
+      lineinfile:
+        path: "{{ zabbix_server_conf }}"
+        regexp: "^#?DBPassword=.*"
+        line: "DBPassword={{ db_password }}"
+        state: present
+      notify: Restart zabbix-server
+
+    # 8. Настройка Nginx
+    - name: Remove default Zabbix nginx config if exists
+      file:
+        path: /etc/nginx/conf.d/zabbix.conf
+        state: absent
+
+    - name: Ensure nginx conf directory exists
+      file:
+        path: /etc/nginx/conf.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Configure Zabbix Nginx
+      template:
+        src: templates/zabbix_nginx.conf.j2
+        dest: /etc/nginx/conf.d/zabbix.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - Validate Nginx configuration
+        - Restart Nginx
+
+    # 9. Настройка PHP через отдельный конфиг
+    - name: Ensure PHP config directory exists
+      file:
+        path: /etc/php/8.3/fpm/conf.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Configure PHP settings
+      template:
+        src: templates/php_settings.ini.j2
+        dest: /etc/php/8.3/fpm/conf.d/zabbix.ini
+        owner: root
+        group: root
+        mode: 0644
+      notify: Restart PHP-FPM
+
+    # 10. Настройка PHP-FPM
+    - name: Check if PHP-FPM pool config exists
+      stat:
+        path: "/etc/php/8.3/fpm/pool.d/www.conf"
+      register: php_fpm_conf
+
+    - name: Configure PHP-FPM socket
+      lineinfile:
+        path: "/etc/php/8.3/fpm/pool.d/www.conf"
+        regexp: "^listen = .*"
+        line: "listen = /run/php/php8.3-fpm-zabbix.sock"
+        state: present
+      when: php_fpm_conf.stat.exists
+      notify: Restart PHP-FPM
+
+    # 11. Запуск служб
+    - name: Ensure services are running and enabled
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop:
+        - zabbix-server
+        - zabbix-agent
+        - nginx
+        - php8.3-fpm
+
+  handlers:
+    - name: Restart zabbix-server
+      service:
+        name: zabbix-server
+        state: restarted
+
+    - name: Validate Nginx configuration
+      command: nginx -t
+      register: nginx_validate
+      changed_when: false
+      listen: "Restart Nginx"
+
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+      when: nginx_validate is not skipped
+
+    - name: Restart PHP-FPM
+      service:
+        name: php8.3-fpm
+        state: restarted

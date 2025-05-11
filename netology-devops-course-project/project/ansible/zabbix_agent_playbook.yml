@@ -1,0 +1,53 @@
+# /home/ilya/project/ansible/zabbix_agent_playbook.yml
+
+# zabbix_agent_playbook.yml
+---
+- name: Install and configure Zabbix Agent 2
+  hosts: web_servers
+  become: yes
+  vars:
+    zabbix_server_ip: "{{ hostvars['zabbix-server']['ansible_host'] }}"
+
+  tasks:
+    # 1. Отключаем UFW
+    - name: Disable UFW
+      ufw:
+        state: disabled
+
+    # 2. Устанавливаем зависимости
+    - name: Add Zabbix repository key
+      apt_key:
+        url: "https://repo.zabbix.com/zabbix-official-repo.key"
+        state: present
+
+    - name: Add Zabbix repository
+      apt_repository:
+        repo: "deb https://repo.zabbix.com/zabbix/6.0/ubuntu noble main"
+        state: present
+        filename: zabbix
+
+    # 3. Устанавливаем агент
+    - name: Install Zabbix Agent 2
+      apt:
+        name: zabbix-agent2
+        state: present
+
+    # 4. Настраиваем конфиг
+    - name: Configure Zabbix Agent
+      template:
+        src: templates/zabbix_agent2.conf.j2
+        dest: /etc/zabbix/zabbix_agent2.conf
+      notify: Restart Zabbix Agent
+
+    # 5. Запускаем службу
+    - name: Start and enable agent
+      service:
+        name: zabbix-agent2
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Restart Zabbix Agent
+      service:
+        name: zabbix-agent2
+        state: restarted

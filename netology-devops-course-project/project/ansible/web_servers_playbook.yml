@@ -1,0 +1,43 @@
+# /home/ilya/project/ansible/web_servers_playbook.yml
+---
+- name: Configure web servers
+  hosts: web_servers
+  become: yes
+
+  tasks:
+    - name: Disable UFW on web servers
+      ufw:
+        state: disabled
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Create website directory
+      file:
+        path: /var/www/html
+        state: directory
+        mode: '0755'
+
+    - name: Copy index.html
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Welcome to our site!</title>
+          </head>
+          <body>
+              <h1>Hello from {{ inventory_hostname }}!</h1>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        mode: '0644'
+
+    - name: Ensure nginx is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
