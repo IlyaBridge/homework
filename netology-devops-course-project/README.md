@@ -104,13 +104,13 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 │
 └── ansible/                          # Конфигурация управления
     ├──templates
-    │   ├── sshd_config.j2		      # Шаблон конфигурации SSH-сервера
-    │   ├── php_settings.ini		  # Параметры PHP для Zabbix (лимиты памяти, времени выполнения)
-    │   ├── zabbix_agent2.conf	      # Конфиг агента Zabbix (IP сервера, имя хоста, настройки плагинов)
-    │   └── zabbix_nginx.conf.j2	  # Конфиг для Zabbix-сервера(zabbix_playbook.yml)
-    ├── ansible.cfg			          # Конфиг Ansible
-    ├── elk_playbook.yml		      # Настройка ELK
-    ├── inventory.json		          # Инвентарь с автозаполнением
+    │   ├── sshd_config.j2            # Шаблон конфигурации SSH-сервера
+    │   ├── php_settings.ini          # Параметры PHP для Zabbix (лимиты памяти, времени выполнения)
+    │   ├── zabbix_agent2.conf        # Конфиг агента Zabbix (IP сервера, имя хоста, настройки плагинов)
+    │   └── zabbix_nginx.conf.j2      # Конфиг для Zabbix-сервера(zabbix_playbook.yml)
+    ├── ansible.cfg                   # Конфиг Ansible
+    ├── elk_playbook.yml              # Настройка ELK
+    ├── inventory.json                # Инвентарь с автозаполнением
     ├── ssh_bastion_setup.yml         # Настройка SSH на bastion-host: отключение парольной аутентификации, настройка ключей
     ├── web_servers_playbook.yml      # Настройка веб-серверов
     ├── zabbix_agent_playbook.yml     # Настройка Zabbix-агентов
