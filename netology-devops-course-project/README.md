@@ -111,10 +111,10 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
     ├── ansible.cfg			          # Конфиг Ansible
     ├── elk_playbook.yml		      # Настройка ELK
     ├── inventory.json		          # Инвентарь с автозаполнением
-    ├── ssh_bastion_setup 		      # Настройка SSH на bastion-host: отключение парольной аутентификации, настройка ключей
-    ├── web_servers_playbook.yml	  # Настройка веб-серверов
-    ├── zabbix_agent_playbook.yml	  # Настройка Zabbix-агентов
-    └── zabbix_playbook.yml		      # Настройка Zabbix-сервера 
+    ├── ssh_bastion_setup.yml         # Настройка SSH на bastion-host: отключение парольной аутентификации, настройка ключей
+    ├── web_servers_playbook.yml      # Настройка веб-серверов
+    ├── zabbix_agent_playbook.yml     # Настройка Zabbix-агентов
+    └── zabbix_playbook.yml           # Настройка Zabbix-сервера 
 ```
 ### Результат создания ВМ в YandexCloud
 
