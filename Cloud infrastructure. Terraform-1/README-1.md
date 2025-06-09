@@ -110,6 +110,7 @@ external = 9090
 ![Задание 1 п 2 Ответ 0001](https://github.com/user-attachments/assets/36a30cb4-65d7-4f2d-87b5-bafa9031cd3d)
 
 ![Задание 1 п 2 Ответ 0002](https://github.com/user-attachments/assets/1b793b99-8cf8-4a4d-b4c3-3e9f20ab5b5b)
+
 Ключ: result, значение: 2Hll8EiDOOLGjVKr.
 
 ---
@@ -151,21 +152,25 @@ resource "docker_container" "nginx" {
   name  = "hello_world"
 ```
 Выполним команду terraform apply -auto-approve:
+
 ![Задание 1 п 5 Ответ 0001](https://github.com/user-attachments/assets/e62c15c1-7a0b-4a10-982a-87c13f4c9348)
 
 Вывод docker ps после применения:
+
 ![Задание 1 п 5 Ответ 0002](https://github.com/user-attachments/assets/47d1c9ae-d513-4ed9-b178-e359ad087ec8)
 
 ---
 
 ### 7 Уничтожение ресурсов
 После terraform destroy содержимое terraform.tfstate:
+
 ![Задание 1 п 6 Ответ 0001](https://github.com/user-attachments/assets/f25dcdea-0d3f-4a4a-bcf7-1b017c0a33a7)
 
 ---
 
 ### 8 Почему не удалился образ nginx
 В коде явно указано:
+
 ![Задание 1 п 7 Ответ 0001](https://github.com/user-attachments/assets/4ac8aaeb-7237-4fe3-99d7-8464b7b3bdab)
 
 Из документации провайдера docker:
