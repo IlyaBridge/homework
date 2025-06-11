@@ -10,15 +10,11 @@ https://github.com/netology-code/ter-homeworks/blob/main/02/hw-02.md
 2.	Установлен инструмент Yandex CLI.
 3.	Исходный код для выполнения задания расположен в директории 02/src. https://github.com/netology-code/ter-homeworks/tree/main/02/src
 
-## Задание 0
-Ознакомьтесь с документацией к security-groups в Yandex Cloud. Этот функционал понадобится к следующей лекции.
-https://yndx.auth.yandex.cloud/install?uuid=6915510f-7611-4ce8-a9eb-3fc19b16821d&retpath=https%3A%2F%2Fyandex.cloud%2Fru%2Fdocs%2Fvpc%2Fconcepts%2Fsecurity-groups%3Ffrom%3Dint-console-help-center-or-nav%26utm_referrer%3Dhttps%253A%252F%252Fgithub.com%252Fnetology-code%252Fter-homeworks%252Fblob%252Fmain%252F02%252Fhw-02.md
-
 Внимание!! Обязательно предоставляем на проверку получившийся код в виде ссылки на ваш github-репозиторий!
 
 ---
 
-## Задание 1 | Решение 1
+## Задание 1
 В качестве ответа всегда полностью прикладывайте ваш terraform-код в git. Убедитесь что ваша версия Terraform ~>1.8.4
 
 1. Изучите проект. В файле variables.tf объявлены переменные для Yandex provider.
@@ -88,14 +84,18 @@ core_fraction = 5 - гарантированная доля vCPU
 -	скриншот консоли, curl должен отобразить тот же внешний ip-адрес;
 -	ответы на вопросы.
 
+[Файлы задания №1](https://github.com/IlyaBridge/homework/tree/main/Cloud%20infrastructure.%20Terraform-2/task-1)
+
 ---
 
-## Задание 2 | Решение 2
+## Задание 2
 1. Замените все хардкод-значения для ресурсов yandex_compute_image и yandex_compute_instance на отдельные переменные. К названиям переменных ВМ добавьте в начало префикс vm_web_ . Пример: vm_web_name.
 2. Объявите нужные переменные в файле variables.tf, обязательно указывайте тип переменной. Заполните их default прежними значениями из main.tf.
 3. Проверьте terraform plan. Изменений быть не должно.
 
-## Решение 2
+## Ответ 2
+[Файлы задания №2](https://github.com/IlyaBridge/homework/tree/main/Cloud%20infrastructure.%20Terraform-2/task-2)
+
 variables.tf с новыми переменными
 ```
 ###cloud vars
@@ -257,31 +257,54 @@ resource "yandex_compute_instance" "platform" {
 P.S.
 Раньше значения были "зашиты" в коде, теперь их можно менять централизованно через variables.tf или terraform.tfvars.
 
+Результат команды terraform plan
+
+![Ответ 2 0001](https://github.com/user-attachments/assets/ff5b5a35-5120-46dd-ba12-cee13e460e7b)
+
 ---
 
-## Задание 3 | Решение 3
+## Задание 3
 1. Создайте в корне проекта файл 'vms_platform.tf' . Перенесите в него все переменные первой ВМ.
 2. Скопируйте блок ресурса и создайте с его помощью вторую ВМ в файле main.tf: "netology-develop-platform-db" , cores  = 2, memory = 2, core_fraction = 20. Объявите её переменные с префиксом vm_db_ в том же файле ('vms_platform.tf'). ВМ должна работать в зоне "ru-central1-b"
 3. Примените изменения.
 
+## Ответ 3
+[Файлы задания №3](https://github.com/IlyaBridge/homework/tree/main/Cloud%20infrastructure.%20Terraform-2/task-3)
+
+![Задание 3 - 001](https://github.com/user-attachments/assets/f4a04cdc-55fe-487e-9897-78cfece34748)
+
+![Задание 3 - 002](https://github.com/user-attachments/assets/fff40994-2914-47f0-8b6c-acaa9fd01308)
+
 ---
 
-## Задание 4 | Решение 4
+## Задание 4
 1. Объявите в файле outputs.tf один output , содержащий: instance_name, external_ip, fqdn для каждой из ВМ в удобном лично для вас формате.(без хардкода!!!)
 2. Примените изменения.
 
 В качестве решения приложите вывод значений ip-адресов команды terraform output.
 
+## Ответ 4
+[Файлы задания №4](https://github.com/IlyaBridge/homework/tree/main/Cloud%20infrastructure.%20Terraform-2/task-4)
+
+![Ответ 4](https://github.com/user-attachments/assets/b029aa0f-913f-47dd-a686-850dd1864ac5)
+
 ---
 
-## Задание 5 | Решение 5
+## Задание 5
 1. В файле locals.tf опишите в одном local-блоке имя каждой ВМ, используйте интерполяцию ${..} с НЕСКОЛЬКИМИ переменными по примеру из лекции.
 2. Замените переменные внутри ресурса ВМ на созданные вами local-переменные.
 3. Примените изменения.
 
+## Ответ 5
+[Файлы задания №5](https://github.com/IlyaBridge/homework/tree/main/Cloud%20infrastructure.%20Terraform-2/task-5)
+
+![Ответ 5 - 1](https://github.com/user-attachments/assets/b2433b52-3ffc-4fd1-9ed6-443932351638)
+
+![Ответ 5 - 2](https://github.com/user-attachments/assets/fecc1b5e-fb6a-433f-b3cc-e8e06533d6c8)
+
 ---
 
-## Задание 6 | Решение 6
+## Задание 6
 1. Вместо использования трёх переменных ".._cores",".._memory",".._core_fraction" в блоке resources {...}, объедините их в единую map-переменную vms_resources и внутри неё конфиги обеих ВМ в виде вложенного map(object).
 
 пример из terraform.tfvars:
@@ -318,6 +341,10 @@ metadata = {
 3. Найдите и закоментируйте все, более не используемые переменные проекта.
 
 4. Проверьте terraform plan. Изменений быть не должно.
+
+## Ответ 6
+
+[Файлы задания №6](https://github.com/IlyaBridge/homework/tree/main/Cloud%20infrastructure.%20Terraform-2/task-6)
 
 ---
 
