@@ -49,7 +49,9 @@ https://github.com/netology-code/mnt-homeworks/blob/MNT-video/08-ansible-05-test
 ---
 
 # Решение
+
 [Задание Molecule:](https://github.com/IlyaBridge/homework/tree/main/Configuration-Management-System-2/Molecule)
+
 [Задание tox:](https://github.com/IlyaBridge/homework/tree/main/Configuration-Management-System-2/Tox)
 
 Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи molecule init scenario --driver-name docker.
