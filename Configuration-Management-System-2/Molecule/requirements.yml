@@ -1,0 +1,5 @@
+# vector-role/requirements.yml
+---
+roles:
+  - name: geerlingguy.repo-epel  # Для OracleLinux может потребоваться
+collections: []

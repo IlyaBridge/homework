@@ -1,0 +1,8 @@
+# vector-role/templates/vector.toml.j2
+[sources.in]
+type = "stdin"
+
+[sinks.out]
+type = "console"
+inputs = ["in"]
+encoding.codec = "json"

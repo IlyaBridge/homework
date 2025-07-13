@@ -1,0 +1,43 @@
+---
+- name: Install Vector via direct download
+  block:
+    - name: Create installation directory
+      ansible.builtin.file:
+        path: /tmp/vector_install
+        state: directory
+        mode: '0755'
+      become: yes
+
+    - name: Download Vector (Ubuntu)
+      ansible.builtin.get_url:
+        url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-amd64.deb"
+        dest: "/tmp/vector_install/vector.deb"
+      when: ansible_os_family == 'Debian'
+      become: yes
+
+    - name: Download Vector (RHEL)
+      ansible.builtin.get_url:
+        url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-x86_64.rpm"
+        dest: "/tmp/vector_install/vector.rpm"
+      when: ansible_os_family == 'RedHat'
+      become: yes
+
+    - name: Install Vector (Ubuntu)
+      ansible.builtin.apt:
+        deb: "/tmp/vector_install/vector.deb"
+      when: ansible_os_family == 'Debian'
+      become: yes
+
+    - name: Install Vector (RHEL)
+      ansible.builtin.yum:
+        name: "/tmp/vector_install/vector.rpm"
+      when: ansible_os_family == 'RedHat'
+      become: yes
+
+    - name: Clean up
+      ansible.builtin.file:
+        path: /tmp/vector_install
+        state: absent
+      become: yes
+  vars:
+    vector_version: "0.33.0"  # Укажите нужную версию

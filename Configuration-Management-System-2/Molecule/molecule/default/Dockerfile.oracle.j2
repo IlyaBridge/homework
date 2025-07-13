@@ -1,0 +1,9 @@
+FROM oraclelinux:8
+
+RUN dnf install -y python39 python3-dnf curl ca-certificates sudo && \
+    dnf clean all && \
+    alternatives --set python3 /usr/bin/python3.9 && \
+    echo 'Defaults:root !requiretty' >> /etc/sudoers && \
+    echo 'ansible ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+CMD ["sleep", "infinity"]

@@ -1,0 +1,10 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ensure Python is available (raw)
+      ansible.builtin.raw: which python3 || (apt-get update && apt-get install -y python3) || (dnf install -y python3)
+      register: python_check
+      changed_when: false
+      ignore_errors: yes
