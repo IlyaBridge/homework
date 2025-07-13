@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ubuntu-jammy
+    image: ubuntu:22.04
+    dockerfile: Dockerfile.ubuntu.j2
+    privileged: true
+    command: "sleep infinity"
+  - name: oraclelinux-8
+    image: oraclelinux:8
+    dockerfile: Dockerfile.oracle.j2
+    privileged: true
+    command: "sleep infinity"
+
+# provisioner:
+#   name: ansible
+#   inventory:
+#     group_vars:
+#       all:
+#         ansible_python_interpreter: /usr/bin/python3
+#         ansible_user: root
+#   config_options:
+#     defaults:
+#       gather_facts: false
+#     privilege:
+#       become: false  # Отключаем become, так как работаем от root
+
+# ------------------
+
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /usr/bin/python3
+  config_options:
+    defaults:
+      gather_facts: true
+    privilege:
+      become: true
+      become_method: sudo
+
+
+# --------------
+
+
+
+verifier:
+  name: ansible

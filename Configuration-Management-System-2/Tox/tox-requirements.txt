@@ -1,0 +1,5 @@
+molecule==3.6.1
+molecule-podman==1.1.0
+ansible-core==2.11.12
+ansible-compat==1.0.0
+python-dotenv>=0.21.0

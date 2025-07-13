@@ -1,0 +1,15 @@
+---
+dependency:
+  enabled: false
+
+driver:
+  name: podman
+  name: docker  # Используем docker вместо podman
+
+platforms:
+  - name: instance
+    image: docker.io/ubuntu:22.04
+    pre_build_image: true
+
+provisioner:
+  name: ansible

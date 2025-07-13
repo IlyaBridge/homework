@@ -1,0 +1,25 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check Vector binary exists
+      ansible.builtin.stat:
+        path: /usr/bin/vector
+      register: vector_bin
+
+    - name: Get Vector version
+      ansible.builtin.command: vector --version
+      register: vector_version
+      when: vector_bin.stat.exists
+      ignore_errors: yes
+
+    - name: Debug Vector info
+      ansible.builtin.debug:
+        msg: |
+          Vector exists: {{ vector_bin.stat.exists }}
+          Vector version: {{ vector_version.stdout | default('Not available') }}
+
+    - name: Fail if Vector not installed
+      ansible.builtin.fail:
+        msg: "Vector is not installed"
+      when: not vector_bin.stat.exists
