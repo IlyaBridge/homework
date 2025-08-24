@@ -10,12 +10,9 @@ https://github.com/netology-code/mnt-homeworks/tree/MNT-video/10-monitoring-03-g
 Подключите поднятый вами prometheus, как источник данных.
 Решение домашнего задания — скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
-
 ## Решение 1
 
-
-
-
+![0007 - Ответ 1 задание 1](https://github.com/user-attachments/assets/dae1fa64-2b2a-4b1e-8210-9f8806cd9546)
 
 ---
 
@@ -33,6 +30,7 @@ https://github.com/netology-code/mnt-homeworks/tree/MNT-video/10-monitoring-03-g
 
 ## Решение 2
 
+![0014 - Ответ 1 задание 2](https://github.com/user-attachments/assets/be31e8bd-c81e-4e36-9bd3-c75da9a0e5e3)
 
 ---
 
@@ -40,8 +38,11 @@ https://github.com/netology-code/mnt-homeworks/tree/MNT-video/10-monitoring-03-g
 1. Создайте для каждой Dashboard подходящее правило alert — можно обратиться к первой лекции в блоке «Мониторинг».
 2. В качестве решения задания приведите скриншот вашей итоговой Dashboard.
 
-
 ## Решение 3
+
+![0023 - Ответ 1 задание 3](https://github.com/user-attachments/assets/d5d8e27e-f207-4619-9266-7dc8192b75ee)
+
+![0024 - Ответ 2 задание 3](https://github.com/user-attachments/assets/4d4bf79e-755c-43a3-aa16-7a3da1694c36)
 
 ---
 
