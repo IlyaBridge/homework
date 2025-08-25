@@ -21,9 +21,15 @@ Filebeat следует сконфигурировать для отправки
 
 ## Решение 1
 
+![0001 Ответ 1 Задание 1 (docker ps)](https://github.com/user-attachments/assets/0292d0e6-92a6-4b83-864e-ad067152babf)
 
+![0002 Ответ 1 Задание 1 (docker ps)](https://github.com/user-attachments/assets/1cdf21cc-fec2-42aa-a9ae-be82f8e9bd04)
 
+![0003 Ответ 2 Задание 1 (Kibana)](https://github.com/user-attachments/assets/13ad6b7a-2ec2-4b7a-8d2c-0b1ecd39724b)
 
+![0004 Ответ 2 Задание 1 (Kibana)](https://github.com/user-attachments/assets/4b7bb840-f966-43e9-a8d9-87313a397acd)
+
+![0006 Ответ 3 Задание 1 (Проверяем подключение к Elasticsearch)](https://github.com/user-attachments/assets/bb4560bb-1fc7-41ee-918f-1453906bef0a)
 
 ---
 
@@ -34,5 +40,6 @@ Filebeat следует сконфигурировать для отправки
 
 ## Решение 2
 
+![01](https://github.com/user-attachments/assets/852e116c-e597-4416-873c-5f889945d009)
 
 ---
