@@ -1,0 +1,20 @@
+filebeat.inputs:
+  - type: container
+    paths:
+      - '/var/lib/docker/containers/*/*.log'      # Путь к логам Docker
+
+processors:
+  - add_docker_metadata: # Добавляет метаданные Docker к событиям
+      host: "unix:///var/run/docker.sock" # Использует Docker socket
+
+  - decode_json_fields: # Парсит JSON из поля message
+      fields: ["message"] # Поле для парсинга
+      target: "json" # Целевое поле для распарсенных данных
+      overwrite_keys: true # Перезаписывает существующие поля
+
+output.logstash:
+  hosts: ["logstash:5046"] # Отправка в Logstash по имени сервиса
+  protocol: tcp # Использует TCP протокол
+
+logging.json: true # Логи в JSON формате
+logging.metrics.enabled: false # Отключает метрики для уменьшения шума
