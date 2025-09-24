@@ -56,20 +56,21 @@ spec:
 ```
 
 Применяем манифест^
-
 ```
 kubectl apply -f pod-hello-world.yaml
 ```
+![001 - Задание 1](https://github.com/user-attachments/assets/05c1b0a6-e6cf-4c49-bd32-f777d6b9780d)
 
 Проверяем создание Pod:
-
 ```
 kubectl get pods -o wide
 ```
+![002 - Задание 1](https://github.com/user-attachments/assets/e9691635-aec6-4895-8824-fbdaf83f6f0f)
 
 ```
 kubectl describe pod hello-world
 ```
+![003 - Задание 1](https://github.com/user-attachments/assets/4a7a0699-7d36-48f6-b440-c033283b4b62)
 
 Подключаемся к Pod через port-forward
 
@@ -79,11 +80,12 @@ kubectl port-forward pod/hello-world 8080:8080 --address 0.0.0.0 &
 ```
 curl http://localhost:8080
 ```
+![005 - Задание 1](https://github.com/user-attachments/assets/3a75fc68-014c-4045-8760-e8ecd8698897)
 
-[скриншот]
-
-http://localhost:808
-
+```
+http://localhost:8080
+```
+![006 - Задание 1](https://github.com/user-attachments/assets/592b4ece-129c-4b44-bd95-1857b3e51521)
 
 ---
 
@@ -130,34 +132,38 @@ spec:
 ```
 
 Применяем манифесты
-
 ```
 kubectl apply -f pod-netology-web.yaml
 kubectl apply -f service-netology-svc.yaml
 ```
+![007 - Задание 2](https://github.com/user-attachments/assets/6408f484-e910-4594-8e40-b2106bea6653)
+
 
 Проверяем создание ресурсов
-
 ```
 kubectl get pods -o wide
 ```
+![008 - Задание 2](https://github.com/user-attachments/assets/adeff169-761e-4c67-90a7-622f7c3b2d35)
 
 ```
 kubectl get services -o wide
 ```
+![009 - Задание 2](https://github.com/user-attachments/assets/6fb1b4cf-f16f-41a6-ac49-a4a75dc32fa4)
 
 ```
 kubectl describe service netology-svc
 ```
+![010 - Задание 2](https://github.com/user-attachments/assets/21c67843-6c5e-47ac-864f-579ac12386e1)
 
 Подключаемся к Service через port-forward
-
 ```
 kubectl port-forward service/netology-svc 8081:80 --address 0.0.0.0 &
 ```
+![011 - Задание 2](https://github.com/user-attachments/assets/1f0d48e2-8a3d-4021-b464-b454c813a61b)
 
+```
 http://localhost:8081
-
-
+```
+![012 - Задание 2](https://github.com/user-attachments/assets/e48ef965-3180-4249-b4e8-07dd3b18bdd0)
 
 ---
