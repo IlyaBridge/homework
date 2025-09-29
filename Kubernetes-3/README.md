@@ -85,17 +85,17 @@ spec:
 ### Применяем манифест
 kubectl apply -f deployment-nginx-multitool.yaml
 
-скриншот 3
+![0003](https://github.com/user-attachments/assets/68292157-1deb-41d9-a682-6f5698717105)
 
 ### Проверяем статус Pod
 kubectl get pods -l app=nginx-multitool
 
-скриншот 4
+![0004](https://github.com/user-attachments/assets/7324fe99-ff62-4207-9083-e2add14a8413)
 
 ### Смотрим детали для выявления ошибки
 kubectl describe pod -l app=nginx-multitool
 
-скриншот 5
+![0005](https://github.com/user-attachments/assets/f4024e92-e466-4d56-90f2-943cf8660b73)
 
 Ошибка будет где оба контейнера пытаются занять порт 80, что вызывает конфликт.
 
@@ -151,40 +151,40 @@ spec:
 ### Применяем исправленную версию
 kubectl apply -f deployment-nginx-multitool-fixed.yaml
 
-скриншот 6
+![0006](https://github.com/user-attachments/assets/bd229041-faaf-464f-957f-585616fc94f4)
 
 ### Проверяем, что Pod запустился
 kubectl get pods -l app=nginx-multitool
 
-скриншот 7
+![0007](https://github.com/user-attachments/assets/274d6991-5e6f-4356-8451-e45d84380af9)
 
 ## 1.3. Масштабирование Deployment
 Демонстрируем количество подов до масштабирования:
 ### Проверяем текущее количество реплик
 kubectl get deployment nginx-multitool
 
-скриншот 8
- 
+![0008](https://github.com/user-attachments/assets/7efacef9-4b9d-4f11-b293-08abf05fe0ed)
+
 ### Смотрим текущие Pod'ы
 kubectl get pods -l app=nginx-multitool -o wide
 
-скриншот 9
+![0009](https://github.com/user-attachments/assets/0618035a-6adf-4994-9b89-26e00939c936)
 
 ## Масштабируем до 2 реплик:
 ### Масштабируем Deployment
 kubectl scale deployment nginx-multitool --replicas=2
 
-скриншот 11
+![0011](https://github.com/user-attachments/assets/9fb2594d-0c3d-4c7c-8eee-d8fd250a23bf)
 
 ### Проверяем результат масштабирования
 kubectl get deployment nginx-multitool
 
-скриншот 12
+![0012](https://github.com/user-attachments/assets/06040fb0-0725-4edd-8775-6d8c5e65d45e)
 
 ### Смотрим новые Pod'ы
 kubectl get pods -l app=nginx-multitool -o wide
 
-скриншот 13
+![0013](https://github.com/user-attachments/assets/0fef6802-f9c9-46ae-94e9-1a4c6319573d)
 
 ## 1.4. Создание Service для доступа к приложению
 Создаем манифест Service:
@@ -214,17 +214,17 @@ spec:
 ### Применяем Service
 kubectl apply -f service-nginx-multitool.yaml
 
-скриншот 15
+![0015](https://github.com/user-attachments/assets/4c1b9c65-8a64-4513-826a-584c6e991fcb)
 
 ### Проверяем создание Service
 kubectl get service nginx-multitool-service
 
-скриншот 16
+![0016](https://github.com/user-attachments/assets/6b5e6383-bdb0-411e-9b9a-f55fbf88694e)
 
 ### Смотрим детали Service
 kubectl describe service nginx-multitool-service
 
-скриншот 17
+![0017](https://github.com/user-attachments/assets/563fa2eb-2f4e-46e8-a3e5-da7b8d83dc89)
 
 ## 1.5. Создание отдельного Pod для тестирования доступа
 
@@ -248,36 +248,36 @@ spec:
 ### Создаем тестовый Pod
 kubectl apply -f pod-test-multitool.yaml
 
-скриншот 18
+![0018](https://github.com/user-attachments/assets/04fb3df9-2e34-4c3e-b64c-a3af3818de00)
 
 ### Ждем запуска Pod
 kubectl wait --for=condition=ready pod/test-multitool --timeout=60s
 
-скриншот 19
+![0019](https://github.com/user-attachments/assets/35d26925-36d1-49c7-b967-24ad33caa464)
 
 ### Тестируем доступ к nginx контейнерам через Service
 kubectl exec test-multitool -- curl -s http://nginx-multitool-service:80
 
-скриншот 20
- 
+![0020](https://github.com/user-attachments/assets/0536e90c-80f9-493c-80fb-b4268c79f201)
+
 ### Тестируем доступ к multitool контейнерам через Service  
 kubectl exec test-multitool -- curl -s http://nginx-multitool-service:8080
 
-скриншот 21
+![0021](https://github.com/user-attachments/assets/475de3a1-6f59-491c-9eca-96f3b8800df6)
  
 ### Тестируем доступ к отдельным Pod'ам
 kubectl get pods -l app=nginx-multitool -o wide
 
-скриншот 22
- 
+![0022](https://github.com/user-attachments/assets/5b0c9d4a-58bd-49c1-a261-5aede277a6a0)
+
 ### Тестируем прямой доступ к Pod
 kubectl exec test-multitool -- curl -s http://$POD_IP:80
 
-скриншот 23
- 
+![0023](https://github.com/user-attachments/assets/3756a88c-da34-4faf-aaf3-b9f99eca8e45)
+
 kubectl exec test-multitool -- curl -s http://$POD_IP:8080
 
-скриншот 24
+![0024](https://github.com/user-attachments/assets/1e614185-8ab3-459d-aa50-854984a1c6c3)
 
 ---
 
@@ -331,23 +331,24 @@ spec:
 ### Проверяем состояние Pod - должен ЗАВИСНУТЬ в Init
       kubectl get pods -l app=nginx-init
 
-скриншот 2-1
+![0002-1](https://github.com/user-attachments/assets/5f0c1ba7-b51c-4cd5-a991-b268dad9f63e)
 
 ### Смотрим детали - должен быть Init:0/1
 kubectl describe pod -l app=nginx-init
 
-скриншот 2-2
+![0002-2](https://github.com/user-attachments/assets/aa65a9da-e55a-4a2a-a35b-aed849438bb5)
 
 ## Проверяем, что Init-контейнер ЗАВИС
 
 ### Смотрим логи init-контейнера
 kubectl logs -l app=nginx-init -c check-service
 
-скриншот 2-4
+![0002-4](https://github.com/user-attachments/assets/e1f0b41e-5ba1-4ad1-a18a-f1a7dae57539)
 
 ## Создаем Service
 ### Создаем Service
 Файл service-nginx-init.yaml
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -362,42 +363,43 @@ spec:
     targetPort: 80
     protocol: TCP
   type: ClusterIP
+```
 
 ### Применяем Service
 kubectl apply -f service-nginx-init.yaml
 ### Проверяем создание Service
 kubectl get service nginx-init-service
 
-скриншот 2-6
+![0002-6](https://github.com/user-attachments/assets/0e50075c-db54-4366-ad20-2457409c2d28)
 
 ## Наблюдаем успешный запуск
 ### В реальном времени наблюдаем за Pod
 kubectl get pods -l app=nginx-init -w
 
-скриншот 2-7
+![0002-7](https://github.com/user-attachments/assets/6e9efe39-93bb-437c-b61a-ed45aed87e76)
 
 ### В другом терминале наблюдаем логи init-контейнера
 kubectl logs -l app=nginx-init -c check-service -f
 
-скриншот 2-8
+![0002-8](https://github.com/user-attachments/assets/0aa82370-59e5-4bed-812d-aec3f18c5594)
 
 ## Финальная проверка
 ### После успешного запуска проверяем
 kubectl get pods -l app=nginx-init
 
-скриншот 2-9
+![0002-9](https://github.com/user-attachments/assets/89d6975e-169c-4ad0-aba5-7edb05aa6fd2)
 
 ### Смотрим логи nginx
 kubectl logs -l app=nginx-init -c nginx
 
-скриншот 2-10
+![0002-10](https://github.com/user-attachments/assets/28745d81-9847-40f4-81a9-dece1979cb0b)
 
 ### Тестируем
 kubectl port-forward deployment/nginx-init 8080:80 &
 curl http://localhost:8080
 pkill -f "port-forward"
 
-скриншот 2-11
+![0002-11](https://github.com/user-attachments/assets/8a91f4e7-28cc-45ae-be88-2d5092edbc12)
 
 ---
 
