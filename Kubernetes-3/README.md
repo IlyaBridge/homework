@@ -2,6 +2,10 @@
 
 https://github.com/netology-code/kuber-homeworks/blob/main/1.3/1.3.md
 
+# ВНИМАНИЕ!!!
+1. [Файлы решения Задания №1](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-3/manifests/task1)
+2. [Файлы решения Задания №2](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-3/manifests/task2)
+
 ## Цель задания
 В тестовой среде для работы с Kubernetes, установленной в предыдущем ДЗ, необходимо развернуть Deployment с приложением, состоящим из нескольких контейнеров, и масштабировать его.
 
