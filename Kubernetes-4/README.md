@@ -111,11 +111,11 @@ kubectl exec test-multitool -- nslookup nginx-multitool-service
 Демонстрация балансировки нагрузки
 ```
 for i in {1..3}; do
-  echo "Запрос $i к nginx:"
-  kubectl exec test-multitool -- curl -s http://nginx-multitool-service:9001 | grep -o "Welcome to nginx" || echo "Успешный ответ от nginx"
+  kubectl exec test-multitool -- curl -s http://nginx-multitool-service:9002 | \
+    grep -o "nginx-multitool-app-[^-]*-[^-]*" | head -1
 done
 ```
-![0008 Тест](https://github.com/user-attachments/assets/ecf5cef1-804e-4263-b7cb-f453d7730992)
+![0008 Тест балансировщик](https://github.com/user-attachments/assets/f0a0b7b7-8290-41dd-8da1-d579b9bcfa2c)
 
 Финальная проверка
 ```
@@ -180,14 +180,11 @@ curl -v http://$TEST_IP:30080 2>&1 | head -20
 Тест 3: Проверка нескольких запросов для демонстрации балансировки
 ```
 for i in {1..3}; do
-    echo "Запрос $i:"
-    curl -s http://$TEST_IP:30080 | grep -o "Welcome to nginx" || \
-    curl -s http://$TEST_IP:30080 | grep -o "WBITT Network MultiTool" || \
-    echo "Успешный ответ"
-    echo "---"
+  curl -s http://10.0.2.15:30080 | grep -q "Welcome to nginx" && \
+  echo "Запрос $i успешен" || echo "Запрос $i не удался"
 done
 ```
-![0002-6](https://github.com/user-attachments/assets/fe9fe7ca-ae9f-4d54-99c6-a4b1ba1882b6)
+![0002-6 балансировщик](https://github.com/user-attachments/assets/83fe1a35-23ec-46f3-89a6-10c7e7d2f8e3)
 
 ### Проверка через браузер (демонстрация)
 Запускаем port-forward для демонстрации в браузере
