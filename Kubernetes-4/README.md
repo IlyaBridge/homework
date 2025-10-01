@@ -2,6 +2,10 @@
 
 https://github.com/netology-code/kuber-homeworks/blob/main/1.4/1.4.md
 
+# ВНИМАНИЕ!!!
+1. [Файлы решения Задания №1](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-4/manifests/task1)
+2. [Файлы решения Задания №2](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-4/manifests/task2)
+
 ## Цель задания
 В тестовой среде Kubernetes необходимо обеспечить доступ к приложению, установленному в предыдущем ДЗ и состоящему из двух контейнеров, по разным портам в разные контейнеры как внутри кластера, так и снаружи.
 
@@ -43,7 +47,7 @@ kubectl wait --for=condition=ready pod -l app=nginx-multitool-app --timeout=180s
 kubectl get pods -l app=nginx-multitool-app -o wide
 ```
 
-[0001]
+![0001](https://github.com/user-attachments/assets/b0fa9ef2-4b42-455d-8dfd-30d053780eaf)
 
 Применяем Service
 ```
@@ -61,8 +65,7 @@ kubectl get endpoints nginx-multitool-service
 ```
 kubectl describe service nginx-multitool-service
 ```
-
-[0002]
+![0002](https://github.com/user-attachments/assets/d0df67a5-6aa9-4f60-a514-4f0335033a65)
 
 # Применяем тестовый Pod
 ```
@@ -76,8 +79,7 @@ kubectl wait --for=condition=ready pod/test-multitool --timeout=60s
 ```
 kubectl get pod test-multitool
 ```
-
-[0003]
+![0003](https://github.com/user-attachments/assets/66dfd59b-7274-4722-a725-8897cf7f9773)
 
 ## Тестирование доступа
 
@@ -85,30 +87,26 @@ kubectl get pod test-multitool
 ```
 kubectl exec test-multitool -- curl -s http://nginx-multitool-service:9001 | head -10
 ```
-
-[0004 Тест]
+![0004 Тест](https://github.com/user-attachments/assets/c7559016-ee09-45a9-9594-22db1cb313cc)
 
 Тест 2: Доступ к multitool через порт 9002
 ```
 kubectl exec test-multitool -- curl -s http://nginx-multitool-service:9002 | head -10
 ```
-
-[0005 Тест]
+![0005 Тест](https://github.com/user-attachments/assets/d3369b66-b219-4bcc-900a-2e9f580f53a7)
 
 Тест 3: Доступ по доменному имени
 ```
 kubectl exec test-multitool -- curl -s http://nginx-multitool-service.default.svc.cluster.local:9001 | head -5
 kubectl exec test-multitool -- curl -s http://nginx-multitool-service.default.svc.cluster.local:9002 | head -5
 ```
-
-[0006 Тест]
-
+![0006 Тест](https://github.com/user-attachments/assets/04ccd753-54f1-43a7-a5fa-20395e26c62d)
 
 Проверка DNS
 ```
 kubectl exec test-multitool -- nslookup nginx-multitool-service
 ```
-[0007 Тест]
+![0007 Тест](https://github.com/user-attachments/assets/ef5ed8a4-53a0-49dc-b9c7-4f26487db02d)
 
 Демонстрация балансировки нагрузки
 ```
@@ -117,15 +115,13 @@ for i in {1..3}; do
   kubectl exec test-multitool -- curl -s http://nginx-multitool-service:9001 | grep -o "Welcome to nginx" || echo "Успешный ответ от nginx"
 done
 ```
-
-[0008 Тест]
+![0008 Тест](https://github.com/user-attachments/assets/ecf5cef1-804e-4263-b7cb-f453d7730992)
 
 Финальная проверка
 ```
 kubectl get all -l app=nginx-multitool-app
 ```
-
-[0009 Тест]
+![0009 Тест Финал](https://github.com/user-attachments/assets/b4bc3300-d0cb-4335-a25f-bfef216d1ed8)
 
 ---
 
@@ -147,16 +143,14 @@ kubectl get service nginx-nodeport-service
 ```
 kubectl describe service nginx-nodeport-service
 ```
-
-[0002-1]
+![0002-1](https://github.com/user-attachments/assets/32e3b33e-0f58-4017-af40-9d4e23b64b20)
 
 Получаем InternalIP ноды
 ```
 NODE_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}')
 echo "Node Internal IP: $NODE_IP"
 ```
-
-[0002-2]
+![0002-2](https://github.com/user-attachments/assets/d0d72414-ffd0-4c4d-9189-8a2caad9f61e)
 
 ## Тестирование внешнего доступа
 Определяем IP для тестирования
@@ -169,22 +163,19 @@ else
 fi
 
 echo "Используемый IP: $TEST_IP"
-
-[0002-3]
+![0002-3](https://github.com/user-attachments/assets/436f9ff5-e282-46f8-b498-92ad77f4b0bf)
 
 Тест 1: Простой curl запрос
 ```
 curl -s http://$TEST_IP:30080 | head -10
 ```
-
-[0002-4]
+![0002-4](https://github.com/user-attachments/assets/6e5b22ed-8a05-415d-a421-0a4554b133fe)
 
 Тест 2: Проверка с подробным выводом
 ```
 curl -v http://$TEST_IP:30080 2>&1 | head -20
 ```
-
-[0002-5]
+![0002-5](https://github.com/user-attachments/assets/ad810bdf-127c-4a2b-a2be-2fcdba1cc096)
 
 Тест 3: Проверка нескольких запросов для демонстрации балансировки
 ```
@@ -196,7 +187,7 @@ for i in {1..3}; do
     echo "---"
 done
 ```
-[0002-6]
+![0002-6](https://github.com/user-attachments/assets/fe9fe7ca-ae9f-4d54-99c6-a4b1ba1882b6)
 
 ### Проверка через браузер (демонстрация)
 Запускаем port-forward для демонстрации в браузере
@@ -206,11 +197,9 @@ kubectl port-forward service/nginx-nodeport-service 8080:80 --address 0.0.0.0 &
 
 Проверяем в браузере: 
 http://localhost:8080
-
-[0002-7]
+![0002-7 Итоговый ответ](https://github.com/user-attachments/assets/2a8c608b-8ff6-4d8b-8418-06e2485fcb6d)
 
 http://10.0.2.15.:30080
-
-[0002-8]
+![0002-8 Итоговый ответ](https://github.com/user-attachments/assets/81ba05e8-e047-4e8f-a0f0-3641cfe28ca3)
 
 ---
