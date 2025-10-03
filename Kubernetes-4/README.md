@@ -63,11 +63,11 @@ service-nodeport.yaml
 
 ## Ответ 1
 
-[Ссылка на Манифесты]
+[Ссылка на Манифесты](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-4/manifests)
 
-[0001-6]
+![0001-6 Ответ](https://github.com/user-attachments/assets/119b6ca7-04e5-4a21-91bf-3c6042a9dec7)
 
-[0001-7]
+![0001-7 ответ](https://github.com/user-attachments/assets/de80cf6c-d1df-4646-9acf-c156e752a4c6)
 
 ---
 
@@ -160,12 +160,10 @@ spec:
 
 ## Ответ 2
 
-[Ссылка на Манифесты]
+[Ссылка на Манифесты](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-4/manifests)
 
 Проверка
 
-[0002-8]
-
-
+![0002-8 (Финальная проверка)](https://github.com/user-attachments/assets/64f3f8ba-9ca2-495f-9205-c0d7c852fb81)
 
 ---
