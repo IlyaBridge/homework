@@ -53,20 +53,18 @@ containers-data-exchange.yaml
 
 ## Ответ 1
 
-[Cсылка на манифест]()
+[Cсылка на манифест](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-5/task-1/manifests)
 
 Описание пода с контейнерами
 
-[0001-2 (Ответ)]
-
+![0001-2 (Ответ)](https://github.com/user-attachments/assets/92a9ce7f-0a57-4a6b-8666-d6430b7b1264)
 
 Вывод команды чтения файла:
 ```
 kubectl logs -l app=data-exchange -c multitool --tail=20
 ```
 
-[0001-3 (Ответ)]
-
+![0001-3 (Ответ)](https://github.com/user-attachments/assets/4213499a-73c4-440a-83ed-d0d9c998aa03)
 
 ---
 
@@ -91,11 +89,11 @@ pv-pvc.yaml
 
 ## Ответ 2
 
-[Cсылка на манифест]()
+[Cсылка на манифест](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-5/task-2/manifests)
 
 Запускаем под, перед этим запускаем манифест и проверяем создание ресурсов:
 
-[0002-1]
+![0002-1](https://github.com/user-attachments/assets/3421cb4b-150d-4114-ac1a-6b4e7b5e518f)
 
 Получаем имя пода
 ```
@@ -103,21 +101,21 @@ POD_NAME=$(kubectl get pods -l app=data-exchange-pv -o jsonpath='{.items[0].meta
 echo "Pod: $POD_NAME"
 ```
 
-[0002-3]
+![0002-3](https://github.com/user-attachments/assets/b7e9dc8d-b87d-49cd-abae-15dc1e8506a5)
 
 Проверяем что multitool читает данные из PV
 ```
 kubectl logs $POD_NAME -c multitool --tail=10
 ```
 
-[0002-4]
+![0002-4](https://github.com/user-attachments/assets/c3b381cb-27c2-416f-834e-e344fc5c16a4)
 
 Проверяем файл на локальном диске ноды
 ```
 sudo cat /mnt/k8s-storage/data/data.log | tail -10
 ```
 
-[0002-5]
+![0002-5](https://github.com/user-attachments/assets/52a11914-bc5c-48bc-9b79-abc5a4cfe392)
 
 Удаляем Deployment
 ``` 
@@ -128,7 +126,7 @@ kubectl delete deployment data-exchange-pv
 kubectl get pods -l app=data-exchange-pv
 ```
 
-[0002-8]
+![0002-8](https://github.com/user-attachments/assets/014fb377-d360-4c53-b952-a58857a83e16)
 
 Удаляем PVC
 ```
@@ -139,16 +137,17 @@ kubectl delete pvc local-pvc
 kubectl get pv local-pv
 ```
 
-[0002-10]
+![0002-10](https://github.com/user-attachments/assets/74381921-b1d3-43b7-bfb0-36b040fb3f4b)
 
 ```
 kubectl describe pv local-pv
 ```
-[0002-11]
+
+![0002-11](https://github.com/user-attachments/assets/5a7b7024-7927-40a4-847f-c58797fcb9c8)
 
 Проверяем, что файл сохранился на локальном диске после удаления PVC
 
-[0002-13]
+![0002-13](https://github.com/user-attachments/assets/f9c324bf-c53b-47a2-8e84-35409385f02f)
 
 Удаляем PV
 ```
@@ -159,7 +158,7 @@ kubectl delete pv local-pv
 kubectl get pv local-pv
 ```
 
-[0002-15]
+![0002-15](https://github.com/user-attachments/assets/ccdeb257-1db2-4960-bc72-e46d56640289)
 
 Проверяем, что произошло с файлом после удаления PV
 ```
@@ -167,7 +166,8 @@ sudo ls -la /mnt/k8s-storage/data/
 sudo cat /mnt/k8s-storage/data/data.log | tail -5
 ```
 
-[0002-16]
+![0002-16](https://github.com/user-attachments/assets/6b211aea-080f-4de2-9360-6b4a552ee22b)
+
 Почему PV перешел в статус Released?
 ```
 Status: Released
@@ -361,14 +361,14 @@ spec:
 
 ## Ответ 3
 
-[Cсылка на манифест]()
+[Cсылка на манифест](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-5/task-3/manifests)
 
 Запускаем манифест sc.yaml
 ```
 kubectl apply -f sc.yaml
 ```
 
-[0003-0001-1(Запускаем)]
+![0003-0001-1(Запускаем)](https://github.com/user-attachments/assets/8ee553d0-ed0c-4c22-a5c5-e4e81743083e)
 
 Проверяем создание ресурсов
 ```
@@ -378,14 +378,15 @@ kubectl get deployments
 kubectl get pods
 ```
 
-[0003-0001-2(Проверяемсоздание)]
+![0003-0001-2(Проверяем создание )](https://github.com/user-attachments/assets/fbede1cf-7953-4b15-acf1-d390cac839ad)
 
 StorageClass
 ```
 kubectl get storageclass -o wide
 kubectl describe storageclass local-storage
 ```
-[0003-0001-3(ответ)]
+
+![0003-0001-3  (ответ)](https://github.com/user-attachments/assets/4f2cf4f8-67da-4be5-8601-56701e94f1a0)
 
 PV и PVC
 ```
@@ -393,41 +394,40 @@ kubectl get pv,pvc -o wide
 kubectl describe pv local-pv-sc 
 ```
 
-[0003-002(СкриншотPVиPVC)]
+![0003-002 (Скриншот PV и PVC)](https://github.com/user-attachments/assets/bce2545a-bd8b-4c0b-a9b5-ca474d0a43f2)
 
 Deployment
 ```
 kubectl get deployments -o wide
 ```
 
-[0003-003(СкриншотDeployment)]
-
+![0003-003 (Скриншот Deployment)](https://github.com/user-attachments/assets/4b49a9ba-b3f8-485d-811f-efea542a1ba0)
 
 ```
 kubectl describe deployment data-exchange-sc
 ```
 
-[0003-004(СкриншотDeployment)]
+![0003-004 (Скриншот Deployment)](https://github.com/user-attachments/assets/22fd90ab-81f7-4599-b92a-6246a880ec49)
 
 Pods
 ```
 kubectl get pods -o wide
 ```
 
-[0003-005(СкриншотPods)]
+![0003-005 (Скриншот Pods)](https://github.com/user-attachments/assets/c4028e07-ab53-4bc6-b90a-eca15b60f2c3)
 
 ```
 kubectl describe pod $POD_NAME
 ```
 
-[0003-006(СкриншотPods)]
+![0003-006 (Скриншот Pods)](https://github.com/user-attachments/assets/bab41be2-dc2a-4256-8bae-8c5fbf85e41b)
 
 Работа приложения
 ```
 kubectl logs $POD_NAME -c multitool --tail=20
 ```
 
-[0003-007(Скриншотработыприложения)]
+![0003-007 (Скриншот работы приложения)](https://github.com/user-attachments/assets/dbc3a595-ea90-4393-9868-e9c2c00ba7cc)
 
 Локальный файл
 ```
@@ -435,10 +435,8 @@ sudo cat /mnt/k8s-storage/sc-data/data.log | tail -15
 sudo ls -la /mnt/k8s-storage/sc-data/
 ```
 
-[0003-008(Скриншотлокальногфайла)]
+![0003-008 (Скриншот локального файла)](https://github.com/user-attachments/assets/a5e1cd3c-dfd2-4a8e-9f31-52b0209d5558)
 
-[0003-009(Скриншотлокальногофайла)]
-
-
+![0003-009 (Скриншот локального файла)](https://github.com/user-attachments/assets/7cc5c12d-5cbc-4ae8-821c-51be54eb9987)
 
 ---
