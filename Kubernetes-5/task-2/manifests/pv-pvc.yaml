@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-pv
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  local:
+    path: "/mnt/k8s-storage/data"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - ilyapc  # Замените на имя вашей ноды (см. kubectl get nodes)
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: local-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: manual
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-exchange-pv
+  labels:
+    app: data-exchange-pv
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-exchange-pv
+  template:
+    metadata:
+      labels:
+        app: data-exchange-pv
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:latest
+        command:
+          - /bin/sh
+          - -c
+          - |
+            echo "Контейнер busybox запущен. Начинаю запись данных в PV..." > /pv-data/data.log
+            while true; do
+              echo "$(date): Данные от busybox в PV - случайное число: $RANDOM" >> /pv-data/data.log
+              sleep 5
+            done
+        volumeMounts:
+        - name: pv-storage
+          mountPath: /pv-data
+          
+      - name: multitool
+        image: wbitt/network-multitool:latest
+        command:
+          - /bin/sh
+          - -c
+          - |
+            echo "Контейнер multitool запущен и мониторит файл в PV..." > /proc/1/fd/1
+            tail -f /pv-data/data.log
+        volumeMounts:
+        - name: pv-storage
+          mountPath: /pv-data
+          
+      volumes:
+      - name: pv-storage
+        persistentVolumeClaim:
+          claimName: local-pvc
