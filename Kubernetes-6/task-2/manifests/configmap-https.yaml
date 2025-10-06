@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-https-config
+  namespace: default
+data:
+  nginx-https.conf: |
+    server {
+        listen 80;
+        server_name myapp.example.com;
+        return 301 https://$server_name$request_uri;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name myapp.example.com;
+
+        ssl_certificate /etc/nginx/ssl/tls.crt;
+        ssl_certificate_key /etc/nginx/ssl/tls.key;
+        
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        # Добавляем заголовки для диагностики
+        add_header X-SSL-Enabled true always;
+        add_header X-Server HTTPS-Nginx always;
+    }

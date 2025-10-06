@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-content
+  namespace: default
+data:
+  # Простая HTML страница, которая будет обслуживаться nginx
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>K8S ConfigMap Demo</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                background-color: #f0f8ff;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            h1 {
+                color: #2c3e50;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 10px;
+            }
+            .info {
+                background: #e8f4fd;
+                padding: 15px;
+                border-left: 4px solid #3498db;
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Kubernetes ConfigMap Demo</h1>
+            <div class="info">
+                <p><strong>Application:</strong> Nginx + Multitool</p>
+                <p><strong>Config Source:</strong> Kubernetes ConfigMap</p>
+                <p><strong>Timestamp:</strong> <span id="timestamp"></span></p>
+            </div>
+            <h2>System Information</h2>
+            <ul>
+                <li>This page is served from a ConfigMap</li>
+                <li>Nginx container handles web serving</li>
+                <li>Multitool container provides debugging tools</li>
+                <li>Both containers share the same ConfigMap volume</li>
+            </ul>
+            <h2>Available Tools</h2>
+            <ul>
+                <li><code>curl</code> - HTTP requests</li>
+                <li><code>dig</code> - DNS lookups</li>
+                <li><code>nslookup</code> - Network diagnostics</li>
+                <li><code>ping</code> - Network connectivity</li>
+            </ul>
+        </div>
+        <script>
+            document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        </script>
+    </body>
+    </html>
+  nginx-config: |
+    server {
+        listen 80;
+        server_name localhost;
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        # Добавляем для диагностики
+        add_header X-Config-Source ConfigMap always;
+        add_header X-Container Nginx always;
+    }
