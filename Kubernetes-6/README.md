@@ -65,11 +65,13 @@ https://github.com/netology-code/kuber-homeworks/blob/shkuber-16/2.3/2.3.md
 
 ## Ответ 1:  
 
-[Манифесты к решению]()
-[configmap-web.yaml]()
-[deployment.yaml]()
+[Манифесты к решению](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-6/task-1/manifests)
 
-[0001-2(Ответ)]
+[configmap-web.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-6/task-1/manifests/configmap-web.yaml)
+
+[deployment.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-6/task-1/manifests/deployment.yaml)
+
+![0001-2 (Ответ)](https://github.com/user-attachments/assets/8c4084fc-c4db-4fe6-b5ba-3da486995e5e)
 
 ---
 ## **Задание 2: Настройка HTTPS с Secrets**  
@@ -92,18 +94,20 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   - `ingress-tls.yaml`
 - Скриншот вывода `curl -k`
 
-## Ответ 2:  
+## Ответ 2:
+
+[ingress-tls.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-6/task-2/manifests/ingress-tls.yaml)
+
 Команда создания Secret: 
 ```
 kubectl create secret tls tls-secret --cert=tls/tls.crt --key=tls/tls.key
 ```
-[0002-3(НолучшесоздадимSecretизфайлов)]
 
-[Манифесты к решению]()
-[ingress-tls.yaml]()
+![0002-3 (Но лучше создадим Secret из файлов)](https://github.com/user-attachments/assets/57915c68-3c1d-4899-ab9e-c47351881634)
 
-[0002-8(ТестируемHTTPSсоединение)(Ответ)]
-[0002-9(ОтветвБраузере)]
+![0002-8 (Тестируем HTTPS соединение) (Ответ)](https://github.com/user-attachments/assets/7e082920-bf57-49bf-a707-b568c5bb9b2a)
+
+![0002-9 (Ответ в Браузере)](https://github.com/user-attachments/assets/86060c9f-ab58-414b-b030-8953e9a44272)
 
 ---
 ## **Задание 3: Настройка RBAC**  
@@ -216,9 +220,11 @@ rules:
 
 ## Ответ 3:  
 
-[Манифесты к решению]()
-[role-pod-reader.yaml]()
-[rolebinding-developer.yaml]()
+[Манифесты к решению](https://github.com/IlyaBridge/homework/tree/main/Kubernetes-6/task-3/manifests)
+
+[role-pod-reader.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-6/task-3/manifests/role-pod-reader.yaml)
+
+[rolebinding-developer.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-6/task-3/manifests/rolebinding-developer.yaml)
 
 Команды генерации сертификатов:
 ```
@@ -227,7 +233,7 @@ openssl req -new -key user-certs/developer.key -out user-certs/developer.csr -su
 sudo openssl x509 -req -in user-certs/developer.csr -CA /var/snap/microk8s/current/certs/ca.crt -CAkey /var/snap/microk8s/current/certs/ca.key -CAcreateserial -out user-certs/developer.crt -days 365
 ```
 
-[0003-20-(Правильныйспособпроверкипоусловию)]
+![0003-20 (Правильный способ проверки по условию)](https://github.com/user-attachments/assets/54f03abf-6e23-41ed-8ae6-a3a7e38b4ec5)
 
 ---
 
