@@ -4,7 +4,7 @@ metadata:
   name: web-content
   namespace: default
 data:
-  # Простая HTML страница, которая будет обслуживаться nginx
+  # HTML страница, которая будет обслуживаться nginx
   index.html: |
     <!DOCTYPE html>
     <html lang="en">
