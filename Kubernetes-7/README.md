@@ -240,18 +240,15 @@ spec:
 
 Проверяем линтинг чарта
 
-Скрин + 
-0001-4 (Проверяем линтинг чарта)
+![0001-4 (Проверяем линтинг чарта)](https://github.com/user-attachments/assets/77d788f2-0e11-40eb-9f33-1af06aa00df3)
 
 Тестируем рендеринг шаблонов
 
-Скрин +
-0001-5 (Тестируем рендеринг шаблонов)
+![0001-5 (Тестируем рендеринг шаблонов)](https://github.com/user-attachments/assets/1958c1e2-368c-41dd-857f-825f1a288632)
 
 Пакетируем чарт
 
-Скрин +
-0001-6 (Пакетируем чарт)
+![0001-6 (Пакетируем чарт)](https://github.com/user-attachments/assets/8dedaeae-4f97-4449-8672-3c688a9219dc)
 
 ------
 ### Задание 2. Запустить две версии в разных неймспейсах
@@ -349,52 +346,63 @@ api:
 
 Создаем неймспейсы
 
-Скрин +
+![0002-1 (Создаем неймспейсы)](https://github.com/user-attachments/assets/8369e2ca-3996-4d0a-8c35-bf65476fb983)
 
-0002-1 (Создаем неймспейсы)
-0002-2 (Проверяем создание)
+![0002-2 (Проверяем создание)](https://github.com/user-attachments/assets/cf4d38c5-ce0d-4509-9178-d1bcfb62775d)
 
 ### УСТАНОВКА ПЕРВОЙ ВЕРСИИ (app1-v1)
 Устанавливаем первую версию
 
-Скрин +
-0002-3 (Устанавливаем первую версию)
-0002-4 (Устанавливаем первую версию)
+![0002-3 (Устанавливаем первую версию)](https://github.com/user-attachments/assets/1172d4ab-4020-4f9c-8066-205dcc02392d)
+
+![0002-4 (Устанавливаем первую версию)](https://github.com/user-attachments/assets/e1dd4121-06aa-49fd-9479-6ef0e74a9090)
 
 ### УСТАНОВКА ВТОРОЙ ВЕРСИИ (app1-v2)
 Устанавливаем вторую версию в том же неймспейсе
-Скрин +
-0002-6 (Устанавливаем вторую версию в том же неймспейсе)
-0002-7 (Проверяем установку)
+
+![0002-6 (Устанавливаем вторую версию в том же неймспейсе)](https://github.com/user-attachments/assets/c440fa30-6c26-4ff2-add1-4e8ca4d0bb8c)
+
+![0002-7 (Проверяем установку)](https://github.com/user-attachments/assets/635feedf-936d-4e45-b77f-dd94305149a9)
 
 ### УСТАНОВКА ТРЕТЬЕЙ ВЕРСИИ (app2)
 Устанавливаем третью версию в другом неймспейсе
-Скрин +
-0002-8 (Устанавливаем третью версию в другом неймспейсе)
-0002-9 (Проверяем установку)
+
+![0002-8 (Устанавливаем третью версию в другом неймспейсе)](https://github.com/user-attachments/assets/dd9f5b5c-47ff-49c2-9a3d-3e03ffc5d5d6)
+
+![0002-9 (Проверяем установку)](https://github.com/user-attachments/assets/49af8d08-22eb-43ff-b0aa-b9a03faa6d44)
 
 ### РЕЗУЛЬТАТ
 Все релизы во всех неймспейсах
 
-Скрин +
-0002-10 (Обзор всех релизов)
+![0002-10 (Обзор всех релизов)](https://github.com/user-attachments/assets/d24ab35f-7187-43dc-92f6-21e5d641fe9a)
 
 Все поды с версиями образов
 
-Скрин +
-0002-11 (Все поды с версиями образов)
+![0002-11 (Все поды с версиями образов)](https://github.com/user-attachments/assets/a2b22248-21a6-477d-bc1d-0a3053c9ac5b)
 
 Информация по app1
-Скрин +
-0002-12 (Детали по app1)
+
+![0002-12 (Детали по app1)](https://github.com/user-attachments/assets/376048a6-b8d9-46dc-add9-ce6848056453)
+
 
 Информация по app2
-Скрин +
-0002-13 (Детали по app2)
+
+![0002-13 (Детали по app2)](https://github.com/user-attachments/assets/2e7a0662-34ce-454c-b38e-c838e465096f)
 
 Проверяем переменные для подтверждения версий
-Скрин +
-0002-14 (Проверка переменных окружения)
+
+![0002-14 (Проверка переменных окружения)](https://github.com/user-attachments/assets/db48780f-49fc-48df-be19-e2bca89edf17)
+
+## Манифесты:
+1. [Chart.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-1/myapp/Chart.yaml)
+2. [values.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-1/myapp/values.yaml)
+3. [web/deployment.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-1/myapp/templates/web/deployment.yaml) - Шаблон deployment для web компонента
+4. [web/service.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-1/myapp/templates/web/service.yaml) - Шаблон service для web компонента
+5. [api/deployment.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-1/myapp/templates/api/deployment.yaml) - Шаблон deployment для api компонента
+6. [api/service.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-1/myapp/templates/api/service.yaml) - Шаблон service для api компонента
+7. [app1-v1.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-2/values/app1-v1.yaml) - Конфигурация для версии 1 в app1
+8. [app1-v2.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-2/values/app1-v2.yaml) - Конфигурация для версии 2 в app1
+9. [app2.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-7/task-2/values/app2.yaml) - Конфигурация для версии в app2
 
 ### Правила приёма работы
 
