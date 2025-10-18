@@ -30,36 +30,37 @@ https://github.com/netology-code/kuber-homeworks/blob/shkuber-16/3.3/3.3.md
 
 Запуск Minikube
 
+![00001-2 -ОТВЕТ](https://github.com/user-attachments/assets/72cd9947-892e-4894-b3e0-24857e8fd8dc)
 
 Namespace
 
-
+![00001-3 -ОТВЕТ](https://github.com/user-attachments/assets/85575ebe-a8b2-4269-8855-783ea7b85482)
 
 Тестируем доступ без сетевых политик:
 
-
-
+![00001-6 -ОТВЕТ](https://github.com/user-attachments/assets/1f007d8e-74b4-4e6a-87d0-f2ec878d6348)
 
 Применяем сетевые политики:
 
-
-
+![00001-7 -ОТВЕТ](https://github.com/user-attachments/assets/86257414-7da3-441d-ad0b-099b990d343c)
 
 Тестируем доступ после применения политик:
 
-
-
+![00001-9 -ОТВЕТ исправление](https://github.com/user-attachments/assets/08c4fc10-4b9f-4f16-880d-854d9203ae69)
 
 Детали сетевых политик
 ```
 kubectl describe networkpolicies -n app
 ```
 
+![00001-10-1 -ОТВЕТ исправление](https://github.com/user-attachments/assets/10b5ccbe-3d5f-4d24-af84-96d7a6560092)
 
+Файлы проекта:
 
-
-Файлы проекта
-
+[00-namespace.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-10/k8s-network-policy-app/k8s-network-policy-app/00-namespace.yaml)
+[01-deployments-services.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-10/k8s-network-policy-app/k8s-network-policy-app/01-deployments-services.yaml)
+[02-network-policies.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-10/k8s-network-policy-app/k8s-network-policy-app/02-network-policies.yaml)
+[03-test-pod.yaml](https://github.com/IlyaBridge/homework/blob/main/Kubernetes-10/k8s-network-policy-app/k8s-network-policy-app/03-test-pod.yaml)
 
 ### Правила приёма работы
 
