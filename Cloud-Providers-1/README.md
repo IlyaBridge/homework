@@ -35,6 +35,8 @@ Resource Terraform для Yandex Cloud:
 
 ## Решение
 
+[Файлы задания](https://github.com/IlyaBridge/homework/tree/main/Cloud-Providers-1/hw)
+
 Проверка создания VPC:
 
 ![0001 ШАГ 1 Проверка создания VPC](https://github.com/user-attachments/assets/2194f50f-36aa-497e-b64e-2b1d4683ce7f)
