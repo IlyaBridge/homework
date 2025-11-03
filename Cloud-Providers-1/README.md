@@ -1,6 +1,6 @@
 #  «Домашнее задание к занятию» "`«Организация сети»`" - `Казначеев Илья`
 
-https://github.com/netology-code/kuber-homeworks/blob/main/1.3/1.3.md
+https://github.com/netology-code/clopro-homeworks/blob/main/15.1.md
 
 ### Подготовка к выполнению задания
 
