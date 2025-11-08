@@ -43,31 +43,29 @@ https://github.com/netology-code/clopro-homeworks/blob/main/15.2.md
 
 ## Решение
 
-[Файлы задания]()
+[Файлы задания](https://github.com/IlyaBridge/homework/tree/main/Cloud-Providers-2/hw)
 
 ### 1. Созданные ресурсы
 
-00001 - terraform output
+![00001 - terraform output](https://github.com/user-attachments/assets/ab18374f-99b5-4965-83b8-108a226051bc)
 
+### 2. Веб-страница через балансировщик
 
-### 2. Веб-страница через балансировщик  
+![00002-1 curl http](https://github.com/user-attachments/assets/64ed9e90-d5e9-47bf-baa1-9c22a456bea7)
 
-00002-1 curl http
-
-00002-2 curl http
+![00002-2 curl http](https://github.com/user-attachments/assets/701ab258-8b3d-4d05-a759-8b187cb1d437)
 
 ### 3. Проверка доступности картинки в Object Storage
 
-00003 curl -I https
+![00003 curl -I https](https://github.com/user-attachments/assets/65149f06-1b50-4de2-ae76-7529285d5183)
 
 ### 4. Instance Group
 
-00004 yc compute instance-group
-
+![00004 yc compute instance-group](https://github.com/user-attachments/assets/5244d90c-7420-4110-aa24-38d299b0ad3e)
 
 ### 5. Load Balancer
 
-00005 yc load-balancer network-load-balancer
+![00005 yc load-balancer network-load-balancer](https://github.com/user-attachments/assets/81202088-69bd-4929-aeaa-032d5b0784b8)
 
 ---
 
