@@ -28,7 +28,7 @@ https://github.com/netology-code/clopro-homeworks/blob/main/15.3.md
 
 ## Решение
 
-[файлы проекта](https://github.com/IlyaBridge/homework/tree/main/Cloud-Providers-3/hw)
+[Файлы задания](https://github.com/IlyaBridge/homework/tree/main/Cloud-Providers-3/hw)
 
 ### Проверяем ключ 
 
